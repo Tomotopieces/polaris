@@ -18,6 +18,5 @@ func enter(exit_state: State) -> void:
 func update(delta: float) -> void:
     super(delta)
 
-    if is_zero_approx(hero.velocity.y):
-        # 进入下落状态
+    if is_zero_approx(hero.velocity.y): # 进入下落状态
         hero.state_machine.change_state(HeroStateFall.new(hero))

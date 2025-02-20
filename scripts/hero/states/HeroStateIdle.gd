@@ -18,14 +18,11 @@ func enter(exit_state: State) -> void:
 func update(delta: float) -> void:
     super(delta)
 
-    # 着陆动画结束后播放闲置动画
-    if not hero.animation_player.is_playing():
+    if not hero.animation_player.is_playing(): # 着陆动画结束后播放闲置动画
         hero.animation_player.play("idling")
 
-    # 进入跑动状态
-    if not is_zero_approx(hero.velocity.x):
+    if not is_zero_approx(hero.velocity.x): # 进入跑动状态
         hero.state_machine.change_state(HeroStateRun.new(hero))
     
-    # 进入下落状态
-    if not is_zero_approx(hero.velocity.y):
+    if not is_zero_approx(hero.velocity.y): # 进入下落状态
         hero.state_machine.change_state(HeroStateFall.new(hero))

@@ -499,3 +499,7 @@ region_rect = Rect2(0, 0, 200, 36)
 libraries = {
 "": SubResource("AnimationLibrary_t128h")
 }
+
+[node name="CoyoteJumpTimer" type="Timer" parent="."]
+wait_time = 0.1
+one_shot = true

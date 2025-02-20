@@ -2,12 +2,12 @@
 class_name State
 
 # 状态名称
-var name: String
+var name: StringName
 
 # 状态计时器
 var timer: float
 
-func _init(name: String) -> void:
+func _init(name: StringName) -> void:
     self.name = name
     self.timer = 0
 

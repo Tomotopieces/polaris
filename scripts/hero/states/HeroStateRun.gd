@@ -17,10 +17,8 @@ func enter(exit_state: State) -> void:
 func update(delta: float) -> void:
     super(delta)
 
-    if is_zero_approx(hero.velocity.x):
-        # 进入闲置状态
+    if is_zero_approx(hero.velocity.x): # 进入闲置状态
         hero.state_machine.change_state(HeroStateIdle.new(hero))
     
-    if not is_zero_approx(hero.velocity.y):
-        # 进入下落状态
+    if not is_zero_approx(hero.velocity.y): # 进入下落状态
         hero.state_machine.change_state(HeroStateFall.new(hero))

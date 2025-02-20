@@ -20,6 +20,11 @@ const JUMP_VELOCITY = -320.0
 # 动画机
 @onready var animation_player: AnimationPlayer = $AnimationPlayer
 
+# 土狼跳计时器
+# 允许玩家在离开地面后的一小段时间内进行跳跃
+# 从地面状态直接进入下落状态后开始计时
+@onready var coyote_jump_timer: Timer = $CoyoteJumpTimer
+
 #endregion
 
 #region 属性
@@ -32,6 +37,14 @@ var direction := 1:
 # 状态机
 var state_machine: StateManchine
 
+# 最大跳跃次数
+var max_jump_chance := 1
+
+# 可用跳跃次数
+var jump_chance := 0
+
+# 当前状态是否允许跳跃
+var state_allow_jump := true
 #endregion
 
 func _ready() -> void:
@@ -39,20 +52,20 @@ func _ready() -> void:
     state_machine.change_state(HeroStateIdle.new(self))
 
 func _physics_process(delta: float) -> void:
-    # 重力
-    velocity += get_gravity() * delta
+    velocity += get_gravity() * delta # 重力
+    self.direction = 1 if velocity.x > 0 else -1 if velocity.x < 0 else 0 # 朝向
+    move_and_slide() # 物理状态
+    state_machine.update(delta) # 状态机
 
-    # 朝向
-    self.direction = 1 if velocity.x > 0 else -1 if velocity.x < 0 else 0
-
-    move_and_slide()
-
-    # 状态更新
-    state_machine.update(delta)
-
+# 角色朝向 setter
 func set_direction(value: int) -> void:
     if direction == value or value == 0:
         return
 
     direction = value
-    graphic.scale.x = direction
+    graphic.scale.x = direction # 通过变更 graphic 的 scale.x 来改变朝向，避免图片的 offset 导致的错位
+
+# 是否可以跳跃
+func can_jump() -> bool:
+    # 在地面或在土狼跳时间内，有剩余的跳跃次数，且当前状态允许进行跳跃操作，则可以跳跃
+    return (is_on_floor() or coyote_jump_timer.time_left > 0) and state_allow_jump and jump_chance > 0
