@@ -22,6 +22,10 @@ func action_strategy() -> void:
     if Input.is_action_just_pressed("ui_cancel"):
         get_tree().paused = true
 
+    # 普通攻击
+    if Input.is_action_just_pressed("skill_1"):
+        hero.state_machine.change_state(HeroStateCast.new(hero, HeroSkillNormalAttack.new(hero)))
+
     # 跳跃
     if Input.is_action_just_pressed("move_jump") and hero.can_jump():
         hero.state_machine.change_state(HeroStateJump.new(hero))

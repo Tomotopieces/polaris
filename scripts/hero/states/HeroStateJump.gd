@@ -12,6 +12,7 @@ func _init(hero: Hero) -> void:
     self.hero = hero
 
 func enter(exit_state: State) -> void:
+    hero.jump_chance -= 1
     hero.velocity.y = hero.JUMP_VELOCITY
     hero.animation_player.play("jumping")
 
