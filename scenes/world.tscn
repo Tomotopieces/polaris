@@ -1,8 +1,9 @@
-[gd_scene load_steps=4 format=4 uid="uid://bwm7hcfk7s1d3"]
+[gd_scene load_steps=5 format=4 uid="uid://bwm7hcfk7s1d3"]
 
 [ext_resource type="TileSet" uid="uid://bgfd7pnui7sgx" path="res://tilesets/geometry.tres" id="1_6o5pb"]
 [ext_resource type="Script" path="res://scripts/World.gd" id="1_w2aw0"]
 [ext_resource type="PackedScene" uid="uid://c0nfg1e6vgqu4" path="res://scenes/hero.tscn" id="2_i4025"]
+[ext_resource type="Script" path="res://scripts/input/InputManager.gd" id="4_88rxh"]
 
 [node name="World" type="Node2D"]
 script = ExtResource("1_w2aw0")
@@ -16,3 +17,6 @@ position = Vector2(-56, 147)
 
 [node name="Camera" type="Camera2D" parent="Hero"]
 limit_smoothed = true
+
+[node name="InputManager" type="Node" parent="."]
+script = ExtResource("4_88rxh")

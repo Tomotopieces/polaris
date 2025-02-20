@@ -2,7 +2,7 @@
 class_name CommonStateInit
 extends State
 
-const NAME := "Init"
+static var NAME := "Init"
 
 func _init() -> void:
     super(NAME)
