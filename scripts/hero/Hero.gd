@@ -58,7 +58,12 @@ func _physics_process(delta: float) -> void:
     if not ignore_gravity:
         velocity += get_gravity() * delta # 重力
     self.direction = 1 if velocity.x > 0 else -1 if velocity.x < 0 else 0 # 朝向
+
+    var not_on_floor = not is_on_floor()
     move_and_slide() # 物理状态
+    if not_on_floor and is_on_floor():
+        jump_chance = max_jump_chance # 恢复跳跃次数
+
     state_machine.update(delta) # 状态机
 
 # 角色朝向 setter

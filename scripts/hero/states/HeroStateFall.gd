@@ -24,7 +24,6 @@ func update(delta: float) -> void:
     super(delta)
 
     if hero.is_on_floor():
-        hero.jump_chance = hero.max_jump_chance # 恢复跳跃次数
         # 着陆时根据水平速度判断进入闲置还是跑动
         if is_zero_approx(hero.velocity.x):
             hero.state_machine.change_state(HeroStateIdle.new(hero))
