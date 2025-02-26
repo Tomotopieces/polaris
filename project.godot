@@ -10,7 +10,7 @@ config_version=5
 
 [application]
 
-config/name="2d-act"
+config/name="polaris"
 run/main_scene="res://scenes/world.tscn"
 config/features=PackedStringArray("4.3", "Forward Plus")
 config/icon="res://icon.svg"
@@ -25,7 +25,7 @@ window/stretch/mode="canvas_items"
 
 [dotnet]
 
-project/assembly_name="2d-act"
+project/assembly_name="polaris"
 
 [editor_plugins]
 
