@@ -9,8 +9,10 @@ func trigger_callback(index: int) -> void:
     if not state is HeroStateCast:
         return
 
-    var callbacks := (state as HeroStateCast).skill.trigger_callbacks
+    var skill := (state as HeroStateCast).skill
+    var callbacks := skill.trigger_callbacks
     if index < callbacks.size():
         callbacks[index].call()
     else: # 超过数组长度则切换状态
+        skill.end()
         hero.state_machine.change_state(HeroStateIdle.new(hero))

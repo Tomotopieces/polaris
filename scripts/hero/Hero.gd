@@ -38,16 +38,16 @@ var direction := 1:
 var state_machine: StateManchine
 
 # 最大跳跃次数
-var max_jump_chance := 1
+var max_jump_chance := 2
 
 # 可用跳跃次数
 var jump_chance := 0
 
-# 当前是否允许跳跃
-var allow_jump := true
+# 当前是否允许移动（跑动、跳跃）
+var allow_move := true
 
-# 当前是否忽视重力
-var ignore_gravity := false
+# 重力倍率
+var gravity_ratio: float = 1
 #endregion
 
 func _ready() -> void:
@@ -55,8 +55,7 @@ func _ready() -> void:
     state_machine.change_state(HeroStateIdle.new(self))
 
 func _physics_process(delta: float) -> void:
-    if not ignore_gravity:
-        velocity += get_gravity() * delta # 重力
+    velocity += get_gravity() * gravity_ratio * delta # 重力效果
     self.direction = 1 if velocity.x > 0 else -1 if velocity.x < 0 else 0 # 朝向
 
     var not_on_floor = not is_on_floor()
@@ -65,6 +64,16 @@ func _physics_process(delta: float) -> void:
         jump_chance = max_jump_chance # 恢复跳跃次数
 
     state_machine.update(delta) # 状态机
+
+# 水平移动
+func horizontal_move(direction: int) -> void:
+    if not allow_move:
+        return
+
+    if direction:
+        velocity.x = direction * SPEED
+    else:
+        velocity.x = move_toward(velocity.x, 0, SPEED)
 
 # 角色朝向 setter
 func set_direction(value: int) -> void:
@@ -77,4 +86,4 @@ func set_direction(value: int) -> void:
 # 是否可以跳跃
 func can_jump() -> bool:
     # 在地面或在土狼跳时间内，有剩余的跳跃次数，且当前状态允许进行跳跃操作，则可以跳跃
-    return (is_on_floor() or coyote_jump_timer.time_left > 0) and allow_jump and jump_chance > 0
+    return (is_on_floor() or coyote_jump_timer.time_left > 0) and allow_move and jump_chance > 0

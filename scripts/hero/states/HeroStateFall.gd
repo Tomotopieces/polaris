@@ -1,6 +1,5 @@
 ## 玩家状态 下落
-class_name HeroStateFall
-extends State
+class_name HeroStateFall extends State
 
 static var NAME := "Fall"
 

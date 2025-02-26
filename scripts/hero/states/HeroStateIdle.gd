@@ -1,6 +1,5 @@
 ## 玩家状态 闲置
-class_name HeroStateIdle
-extends State
+class_name HeroStateIdle extends State
 
 static var NAME := "Idle"
 

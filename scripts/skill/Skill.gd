@@ -14,3 +14,7 @@ func _init(hero: Hero) -> void:
 # 开始技能流程
 func start() -> void:
     pass
+
+# 结束技能流程
+func end() -> void:
+    pass

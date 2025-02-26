@@ -32,10 +32,7 @@ func action_strategy() -> void:
 
     # 水平移动
     var direction := Input.get_axis("move_left", "move_right")
-    if direction:
-        hero.velocity.x = direction * hero.SPEED
-    else:
-        hero.velocity.x = move_toward(hero.velocity.x, 0, hero.SPEED)
+    hero.horizontal_move(direction)
 
 # 暂停菜单场景输入策略
 func esc_menu_strategy() -> void:
