@@ -1,9 +1,10 @@
-[gd_scene load_steps=5 format=4 uid="uid://bwm7hcfk7s1d3"]
+[gd_scene load_steps=6 format=4 uid="uid://bwm7hcfk7s1d3"]
 
 [ext_resource type="TileSet" uid="uid://bgfd7pnui7sgx" path="res://tilesets/geometry.tres" id="1_6o5pb"]
 [ext_resource type="Script" path="res://scripts/World.gd" id="1_w2aw0"]
 [ext_resource type="PackedScene" uid="uid://c0nfg1e6vgqu4" path="res://scenes/hero.tscn" id="2_i4025"]
 [ext_resource type="Script" path="res://scripts/input/InputManager.gd" id="4_88rxh"]
+[ext_resource type="Script" path="res://scripts/input/CommandManager.gd" id="5_nyl32"]
 
 [node name="World" type="Node2D"]
 script = ExtResource("1_w2aw0")
@@ -21,3 +22,6 @@ limit_smoothed = true
 [node name="InputManager" type="Node" parent="."]
 process_mode = 3
 script = ExtResource("4_88rxh")
+
+[node name="CommandManager" type="Node" parent="."]
+script = ExtResource("5_nyl32")

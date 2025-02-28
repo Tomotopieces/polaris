@@ -20,12 +20,16 @@ func push_command(cmd: Command) -> void:
     )
 
 func _physics_process(_delta: float) -> void:
-    # 清空过期指令
+    # 清理过期指令
     buffer = buffer.filter(func(cmd: Command) -> bool: return cmd.is_valid())
     if buffer.is_empty():
         return
-    # TODO
+
+    # 处理有效指令
+    for cmd in buffer:
+        pass
 
 # 指令转动作
-func command2Action(cmd: Command) -> Action:
+func command_to_Action(cmd: Command) -> Action:
     return null
+

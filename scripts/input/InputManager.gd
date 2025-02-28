@@ -6,6 +6,8 @@ class_name InputManager extends Node
 # 玩家角色
 @onready var hero: Hero = $"../Hero"
 
+@onready var commandManager: CommandManager = $"../CommandManager"
+
 #endregion
 
 func _physics_process(_delta: float) -> void:
