@@ -9,10 +9,10 @@ var hero: Hero
 # 技能
 var skill: Skill
 
-func _init(hero: Hero, skill: Skill) -> void:
+func _init(_hero: Hero, _skill: Skill) -> void:
     super(NAME)
-    self.hero = hero
-    self.skill = skill
+    hero = _hero
+    skill = _skill
 
 func enter(exit_state: State) -> void:
     skill.start()

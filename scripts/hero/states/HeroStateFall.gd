@@ -9,9 +9,9 @@ static var GROUND_STATE_NAMES: Array[StringName] = [HeroStateIdle.NAME, HeroStat
 # 玩家角色
 var hero: Hero
 
-func _init(hero: Hero) -> void:
+func _init(_hero: Hero) -> void:
     super(NAME)
-    self.hero = hero
+    hero = _hero
 
 func enter(exit_state: State) -> void:
     # 若从地面状态进入下落状态，则开始土狼跳计时

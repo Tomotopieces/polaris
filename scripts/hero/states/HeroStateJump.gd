@@ -1,15 +1,14 @@
 ## 玩家状态 跳跃
-class_name HeroStateJump
-extends State
+class_name HeroStateJump extends State
 
 static var NAME := "Jump"
 
 # 玩家角色
 var hero: Hero
 
-func _init(hero: Hero) -> void:
+func _init(_hero: Hero) -> void:
     super(NAME)
-    self.hero = hero
+    hero = _hero
 
 func enter(exit_state: State) -> void:
     hero.jump_chance -= 1

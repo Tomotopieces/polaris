@@ -1,6 +1,5 @@
 ## 输入管理
-class_name InputManager
-extends Node
+class_name InputManager extends Node
 
 #region 引用组件
 
@@ -9,7 +8,7 @@ extends Node
 
 #endregion
 
-func _physics_process(delta: float) -> void:
+func _physics_process(_delta: float) -> void:
     # 判断场景，选择输入策略
     if get_tree().paused:
         esc_menu_strategy()
@@ -32,7 +31,8 @@ func action_strategy() -> void:
 
     # 水平移动
     var direction := Input.get_axis("move_left", "move_right")
-    hero.horizontal_move(direction)
+    if direction != 0:
+        hero.horizontal_move()
 
 # 暂停菜单场景输入策略
 func esc_menu_strategy() -> void:

@@ -1,6 +1,5 @@
-class_name Hero
-extends CharacterBody2D
 ## 玩家角色
+class_name Hero extends CharacterBody2D
 
 #region 常量
 
@@ -31,7 +30,7 @@ const JUMP_VELOCITY = -320.0
 
 # 角色朝向
 # 1为右，-1为左
-var direction := 1:
+var _direction := 1:
     set = set_direction
 
 # 状态机
@@ -56,7 +55,7 @@ func _ready() -> void:
 
 func _physics_process(delta: float) -> void:
     velocity += get_gravity() * gravity_ratio * delta # 重力效果
-    self.direction = 1 if velocity.x > 0 else -1 if velocity.x < 0 else 0 # 朝向
+    self._direction = 1 if velocity.x > 0 else -1 if velocity.x < 0 else 0 # 朝向
 
     var not_on_floor = not is_on_floor()
     move_and_slide() # 物理状态
@@ -66,22 +65,22 @@ func _physics_process(delta: float) -> void:
     state_machine.update(delta) # 状态机
 
 # 水平移动
-func horizontal_move(direction: int) -> void:
+func horizontal_move() -> void:
     if not allow_move:
         return
 
-    if direction:
-        velocity.x = direction * SPEED
+    if _direction:
+        velocity.x = _direction * SPEED
     else:
         velocity.x = move_toward(velocity.x, 0, SPEED)
 
 # 角色朝向 setter
 func set_direction(value: int) -> void:
-    if direction == value or value == 0:
+    if _direction == value or value == 0:
         return
 
-    direction = value
-    graphic.scale.x = direction # 通过变更 graphic 的 scale.x 来改变朝向，避免图片的 offset 导致的错位
+    _direction = value
+    graphic.scale.x = _direction # 通过变更 graphic 的 scale.x 来改变朝向，避免图片的 offset 导致的错位
 
 # 是否可以跳跃
 func can_jump() -> bool:

@@ -1,4 +1,4 @@
-# 技能
+## 技能
 class_name Skill
 
 var hero: Hero

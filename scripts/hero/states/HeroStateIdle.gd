@@ -6,9 +6,9 @@ static var NAME := "Idle"
 # 玩家角色
 var hero: Hero
 
-func _init(hero: Hero) -> void:
+func _init(_hero: Hero) -> void:
     super(NAME)
-    self.hero = hero
+    hero = _hero
 
 func enter(exit_state: State) -> void:
     # 播放着陆或闲置动画
