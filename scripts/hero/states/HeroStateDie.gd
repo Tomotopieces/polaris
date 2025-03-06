@@ -1,19 +1,20 @@
-# 玩家状态 死亡
-class_name HeroStateDie extends State
+## 主角状态 死亡
+class_name HeroStateDie
+extends ActionizedState
 
 static var NAME := "Die"
 
-# 玩家角色
+## 主角
 var hero: Hero
 
 func _init(_hero: Hero) -> void:
-    super(NAME)
-    hero = _hero
+	super(NAME, StatePriority.Enum.DIE)
+	hero = _hero
 
-func enter(exit_state: State) -> void:
-    hero.animation_player.play("dying")
+func enter(_exit_state: ActionizedState) -> void:
+	hero.animation_player.play("dying")
 
 func update(delta: float) -> void:
-    super(delta)
-    if not hero.animation_player.is_playing():
-        pass # TODO 死亡结算
+	super(delta)
+	if not hero.animation_player.is_playing():
+		pass # TODO 死亡结算

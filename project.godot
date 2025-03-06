@@ -29,7 +29,7 @@ project/assembly_name="polaris"
 
 [editor_plugins]
 
-enabled=PackedStringArray("res://addons/com.timothyqiu.animation-resetter/plugin.cfg")
+enabled=PackedStringArray()
 
 [input]
 

@@ -1,21 +1,22 @@
-# 玩家状态 使用技能
-class_name HeroStateCast extends State
+## 主角状态 使用技能
+class_name HeroStateCast
+extends ActionizedState
 
 static var NAME := "Cast"
 
-# 玩家角色
+# 主角
 var hero: Hero
 
 # 技能
 var skill: Skill
 
 func _init(_hero: Hero, _skill: Skill) -> void:
-    super(NAME)
-    hero = _hero
-    skill = _skill
+	super(NAME, _skill.priority)
+	hero = _hero
+	skill = _skill
 
-func enter(exit_state: State) -> void:
-    skill.start()
+func enter(_exit_state: ActionizedState) -> void:
+	skill.start()
 
 func update(delta: float) -> void:
-    super(delta)
+	super(delta)

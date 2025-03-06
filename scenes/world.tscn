@@ -4,7 +4,7 @@
 [ext_resource type="Script" uid="uid://x8qgjgrd11uy" path="res://scripts/World.gd" id="1_w2aw0"]
 [ext_resource type="PackedScene" uid="uid://c0nfg1e6vgqu4" path="res://scenes/hero.tscn" id="2_i4025"]
 [ext_resource type="Script" uid="uid://yxttj23jr876" path="res://scripts/input/InputManager.gd" id="4_88rxh"]
-[ext_resource type="Script" uid="uid://bq6ngm5crorug" path="res://scripts/input/CommandManager.gd" id="5_nyl32"]
+[ext_resource type="Script" uid="uid://bq6ngm5crorug" path="res://scripts/command/CommandManager.gd" id="5_nyl32"]
 
 [node name="World" type="Node2D"]
 script = ExtResource("1_w2aw0")
