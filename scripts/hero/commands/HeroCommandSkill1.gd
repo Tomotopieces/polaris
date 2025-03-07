@@ -8,8 +8,8 @@ static var NAME := "Skill1"
 var hero: Hero
 
 func _init(_hero: Hero) -> void:
-	super(NAME, CommandPriority.Enum.LOW_PRIORITY_SKILL)
-	hero = _hero
+    super(NAME, CommandPriority.Enum.LOW_PRIORITY_SKILL)
+    hero = _hero
 
 func to_state() -> ActionizedState:
-	return HeroStateCast.new(hero, HeroSkillNormalAttackGround.new(hero) if hero.is_on_floor() else null) # TODO null 改为 HeroSkillNormalAttackAir
+    return HeroStateCast.new(hero, HeroSkillNormalAttackGround.new(hero)) # TODO 判断地面或空中

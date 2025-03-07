@@ -6,19 +6,24 @@ static var NAME := "Jump"
 ## 主角
 var hero: Hero
 
-func _init(_hero: Hero) -> void:
+## 是否是通过指令进入的
+## 若通过指令进入的该状态，则执行基本的跳跃逻辑
+var enter_by_command: bool
+
+func _init(_hero: Hero, _enter_by_command: bool = true) -> void:
 	super(NAME, StatePriority.Enum.AIR, true)
 	hero = _hero
-	# TODO 将 Jump 拆分成起跳阶段的 Jump 和持续爬升阶段的 Rise ，以便非指令进入的情况可以进入 Rise 状态
-	# TODO 将状态名统一改为 ing 形式
+	enter_by_command = _enter_by_command
 
 func enter(_exit_state: ActionizedState) -> void:
-	hero.jump_chance -= 1
-	hero.velocity.y = hero.JUMP_VELOCITY
-	hero.animation_player.play("jumping")
+	if enter_by_command:
+		var jump_from_floor := hero.jump()
+		hero.animation_player.play("jumping" if jump_from_floor else "double_jumping")
+	else:
+		hero.animation_player.play("rising") # 只有上升部分的循环动画，没有起跳动作
 
 func update(delta: float) -> void:
 	super(delta)
 
-	if is_zero_approx(hero.velocity.y): # 进入下落状态
+	if hero.velocity.y > 0: # 进入下落状态
 		hero.state_machine.change_state(HeroStateFall.new(hero))

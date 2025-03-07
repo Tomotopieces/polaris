@@ -9,6 +9,6 @@ static func natural_state(hero: Hero) -> ActionizedState:
 		else:
 			return HeroStateRun.new(hero)
 	elif hero.velocity.y < 0:
-		return HeroStateJump.new(hero)
+		return HeroStateJump.new(hero, false)
 	else:
 		return HeroStateFall.new(hero)

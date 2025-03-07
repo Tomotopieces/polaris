@@ -18,11 +18,13 @@ func _physics_process(_delta: float) -> void:
 	var to_remove: Array[Command] = []
 	for cmd in buffer:
 		var state := cmd.to_state()
-		if state:
+		if not state:
 			continue
 		if hero.state_machine.change_state(state):
 			to_remove.push_back(cmd)
-	buffer.filter(func(cmd: Command) -> bool: return to_remove.has(cmd)) # 移除指令
+	# 移除指令
+	for cmd in to_remove:
+		buffer.erase(cmd)
 
 ## 添加指令至缓冲区
 ## command: 指令
