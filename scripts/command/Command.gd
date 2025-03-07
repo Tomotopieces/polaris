@@ -2,7 +2,7 @@
 class_name Command
 
 ## 默认有效时间
-static var DEFAULT_VALID_WINDOW: float = 0.2
+static var DEFAULT_VALID_WINDOW: float = 0.15
 
 ## 指令
 var name: String

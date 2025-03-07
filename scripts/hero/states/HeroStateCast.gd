@@ -11,12 +11,15 @@ var hero: Hero
 var skill: Skill
 
 func _init(_hero: Hero, _skill: Skill) -> void:
-    super(NAME, _skill.priority)
-    hero = _hero
-    skill = _skill
+	super(NAME, _skill.priority)
+	hero = _hero
+	skill = _skill
 
 func enter(_exit_state: ActionizedState) -> void:
-    skill.start()
+	skill.start()
 
 func update(delta: float) -> void:
-    super(delta)
+	super(delta)
+
+func exit() -> void:
+	skill.end()

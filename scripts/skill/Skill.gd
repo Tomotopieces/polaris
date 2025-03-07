@@ -1,6 +1,7 @@
 ## 技能
 class_name Skill
 
+## 主角
 var hero: Hero
 
 ## 技能优先级

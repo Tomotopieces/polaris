@@ -18,5 +18,4 @@ func trigger_callback(index: int) -> void:
 	if index < callbacks.size():
 		callbacks[index].call()
 	else: # 超过数组长度则切换状态
-		skill.end()
-		hero.state_machine.change_state(HeroStateIdle.new(hero))
+		hero.state_machine.change_state(HeroStateHelper.natural_state(hero))
