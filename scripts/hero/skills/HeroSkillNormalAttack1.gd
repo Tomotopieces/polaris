@@ -26,5 +26,6 @@ var callback_1 := func () -> void:
 	pass
 
 var callback_2 := func () -> void:
-	# 进入可取消状态
-	hero.state_machine.current_state.cancellable = true
+	hero.command_manager.open_window(
+		HeroCommandSkill1.NAME, DerivedWindow.new(HeroStateCast.new(hero, HeroSkillNormalAttack2.new(hero))))
+	hero.state_machine.current_state.cancellable = true # 进入可取消状态

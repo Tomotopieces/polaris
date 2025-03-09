@@ -8,9 +8,12 @@ extends Node
 @onready var hero: Hero = $"../Hero"
 
 # 指令管理器
-@onready var commandManager: CommandManager = $"../CommandManager"
+var command_manager: CommandManager
 
 #endregion
+
+func _ready() -> void:
+	command_manager = hero.command_manager
 
 func _physics_process(_delta: float) -> void:
 	# 判断场景，选择输入策略
@@ -27,11 +30,11 @@ func action_strategy() -> void:
 
 	# 普通攻击
 	if Input.is_action_just_pressed("skill_1"):
-		commandManager.push_command(HeroCommandSkill1.new(hero))
+		command_manager.push_command(HeroCommandSkill1.new(hero))
 
 	# 跳跃
 	if Input.is_action_just_pressed("move_jump"):
-		commandManager.push_command(HeroCommandJump.new(hero))
+		command_manager.push_command(HeroCommandJump.new(hero))
 
 	# 水平移动（非指令）
 	hero.horizontal_move(Input.get_axis("move_left", "move_right")) # 水平移动在非跑动状态下也会进行

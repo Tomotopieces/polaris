@@ -37,6 +37,9 @@ var _direction := 1:
 ## 状态机
 var state_machine: StateMachine
 
+## 指令管理器
+var command_manager: CommandManager
+
 ## 最大跳跃次数
 var max_extra_jump_chance := 1
 
@@ -56,6 +59,7 @@ var gravity_ratio := 1.0
 func _ready() -> void:
 	state_machine = StateMachine.new()
 	state_machine.change_state(HeroStateIdle.new(self))
+	command_manager = CommandManager.new(self)
 
 func _physics_process(delta: float) -> void:
 	velocity += get_gravity() * gravity_ratio * delta # 重力效果
@@ -67,6 +71,7 @@ func _physics_process(delta: float) -> void:
 		extra_jump_chance = max_extra_jump_chance # 恢复跳跃次数
 
 	state_machine.update(delta) # 状态机
+	command_manager.update(delta) # 指令管理器
 
 ## 水平移动
 func horizontal_move(direction: float) -> void:
