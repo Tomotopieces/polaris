@@ -12,4 +12,5 @@ func _init(_hero: Hero) -> void:
 	hero = _hero
 
 func to_state() -> ActionizedState:
-	return HeroStateCast.new(hero, HeroSkillNormalAttackGround.new(hero)) # TODO 判断地面或空中
+	# TODO 判断当前为第几式
+	return HeroStateCast.new(hero, HeroSkillNormalAttack1.new(hero))
