@@ -11,6 +11,8 @@ func _init(_hero: Hero) -> void:
 	super(NAME, CommandPriority.Enum.LOW_PRIORITY_SKILL)
 	hero = _hero
 
-func to_state() -> ActionizedState:
-	# TODO 判断当前为第几式
-	return HeroStateCast.new(hero, HeroSkillNormalAttack1.new(hero))
+func to_action() -> ActionizedState:
+	if hero.is_on_floor():
+		return HeroStateCast.new(HeroSkillNormalAttackGround1.new(hero))
+	else:
+		return HeroStateCast.new(HeroSkillNormalAttackAir1.new(hero))

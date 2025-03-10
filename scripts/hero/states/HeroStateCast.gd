@@ -4,22 +4,19 @@ extends ActionizedState
 
 static var NAME := "Cast"
 
-# 主角
-var hero: Hero
-
 # 技能
 var skill: Skill
 
-func _init(_hero: Hero, _skill: Skill) -> void:
+func _init(_skill: Skill) -> void:
 	super(NAME, _skill.priority)
-	hero = _hero
 	skill = _skill
 
 func enter(_exit_state: ActionizedState) -> void:
-	skill.start()
+	skill.enter()
 
 func update(delta: float) -> void:
 	super(delta)
+	skill.update(delta)
 
 func exit() -> void:
-	skill.end()
+	skill.exit()

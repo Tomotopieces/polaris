@@ -24,8 +24,8 @@ func _init(_name: String, _priority: int, _valid_time: float = DEFAULT_VALID_TIM
 func is_valid() -> bool:
 	return Time.get_ticks_msec() / 1000.0 < expire_time
 
-## 转为状态（动作）
-## Returns: 状态，可能为null
-func to_state() -> ActionizedState:
+## 转为动作（状态）
+## Returns: 动作（状态），可能为null
+func to_action() -> ActionizedState:
 	assert(false, "Not Implemented") # 所有子类都需要实现此方法
 	return null

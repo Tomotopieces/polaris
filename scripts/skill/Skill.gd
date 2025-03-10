@@ -16,9 +16,15 @@ func _init(_hero: Hero, _priority: StatePriority.Enum) -> void:
 	trigger_callbacks = []
 
 ## 开始技能流程
-func start() -> void:
+func enter() -> void:
+	pass
+
+## 技能更新
+## delta: 时间增量
+@warning_ignore("unused_parameter")
+func update(delta: float) -> void:
 	pass
 
 ## 结束技能流程
-func end() -> void:
+func exit() -> void:
 	pass

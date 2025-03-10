@@ -11,5 +11,5 @@ func _init(_hero: Hero) -> void:
 	super(NAME, CommandPriority.Enum.JUMP)
 	hero = _hero
 
-func to_state() -> ActionizedState:
+func to_action() -> ActionizedState:
 	return HeroStateJump.new(hero) if hero.can_jump() else null

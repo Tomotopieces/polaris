@@ -31,7 +31,7 @@ func update(_delta: float) -> void:
 	for cmd in preinput_buffer:
 		# 若指令命中派生窗口，则为派生动作，否则正常判断
 		var window := command_window_map.get(cmd.name) as DerivedWindow
-		var state: ActionizedState = window.action if window else cmd.to_state()
+		var state: ActionizedState = window.to_action() if window else cmd.to_action()
 		if not state:
 			continue
 
