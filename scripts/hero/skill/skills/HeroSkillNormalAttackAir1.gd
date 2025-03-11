@@ -4,7 +4,7 @@ extends Skill
 
 func _init(_hero: Hero) -> void:
 	super(_hero, StatePriority.Enum.LOW_PRIORITY_CAST)
-	trigger_callbacks = [callback_0, callback_1, callback_2]
+	trigger_callbacks = [callback_0, callback_1]
 
 func enter() -> void:
 	hero.animation_player.stop()
@@ -22,9 +22,7 @@ var callback_0 := func () -> void:
 	pass
 
 var callback_1 := func () -> void:
-	# TODO 关闭伤害判定范围
-	pass
-
-var callback_2 := func () -> void:
 	hero.command_manager.open_window(HeroCommandSkill1.NAME, HeroDerivationNormalAttack2.new(hero))
 	hero.state_machine.current_state.cancellable = true # 进入可取消状态
+	# TODO 关闭伤害判定范围
+	pass

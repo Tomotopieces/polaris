@@ -37,5 +37,6 @@ var callback_2 := func () -> void:
 	pass
 
 var callback_3 := func () -> void:
+	hero.command_manager.open_window(HeroCommandSkill1.NAME, HeroDerivationNormalAttack4.new(hero))
 	hero.state_machine.current_state.cancellable = true
 	# TODO 关闭伤害判定范围2

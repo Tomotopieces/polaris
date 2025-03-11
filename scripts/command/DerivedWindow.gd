@@ -4,7 +4,7 @@
 class_name DerivedWindow
 
 ## 默认有效时间
-static var DEFAULT_VALID_WINDOW: float = 0.5
+static var DEFAULT_VALID_WINDOW: float = 0.3
 
 ## 失效时间
 var expire_time: float
